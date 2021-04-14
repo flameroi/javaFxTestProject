@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane fx:id="AnchorPaneSet2" prefHeight="200.0" prefWidth="534.0" visible="false">
+         <children>
+            <Button fx:id="buttonKey" layoutX="241.0" layoutY="88.0" mnemonicParsing="false" text="GameStart" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="AnchorPaneMenu" prefHeight="200.0" prefWidth="534.0" visible="false">
+         <children>
+            <Label fx:id="labelOnStartMenu" layoutX="239.0" layoutY="21.0" text="Label" />
+            <Button fx:id="buttonOnStartMenu" layoutX="227.0" layoutY="128.0" mnemonicParsing="false" text="Button" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>
