@@ -10,6 +10,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
+import java.util.Random;
+
 public class Controller {
 
     @FXML
@@ -30,6 +32,7 @@ public class Controller {
 
     public void initialize() {
         AnchorPaneMenu.setVisible(true);
+        AnchorPaneSet2.setVisible(false);
         initMenu();
     }
 
@@ -40,6 +43,8 @@ public class Controller {
             AnchorPaneMenu.setVisible(false);
             initGame();
         });
+        xPosition = buttonKey.getLayoutX();
+        yPosition = buttonKey.getLayoutY();
 
     }
 
@@ -50,29 +55,31 @@ public class Controller {
         AnchorPaneSet2.setVisible(true);
 
         buttonKey.setOnAction(actionEvent -> {
-
-            if (xPosition == null && yPosition == null) {
-                xPosition = buttonKey.getLayoutX();
-                yPosition = buttonKey.getLayoutY();
-                clearKeyPos();
-            } else {
-                buttonKey.setLayoutX(buttonKey.getLayoutX() + xPosition / 10);
-                buttonKey.setLayoutY(buttonKey.getLayoutY() + yPosition / 10);
-                if (buttonKey.getLayoutX() > xPosition) {
-                    clearKeyPos();
-                }
-                else {
-                newColor = newColor + 0.1d;
-                AnchorPaneSet2.setBackground(new Background(new BackgroundFill(Color.color(newColor, newColor, newColor), CornerRadii.EMPTY, Insets.EMPTY)));
-            }}
+            buttonKey.setLayoutX(getRandomPosition(buttonKey.getPrefWidth(), AnchorPaneSet2.getPrefWidth()));
+            buttonKey.setLayoutY(getRandomPosition(buttonKey.getPrefHeight(), AnchorPaneSet2.getPrefHeight()));
+            AnchorPaneSet2.setBackground(new Background(new BackgroundFill(getRandomColor(),CornerRadii.EMPTY, Insets.EMPTY)));
         });
     }
 
-    private void clearKeyPos() {
-        newColor = 0;
-        AnchorPaneSet2.setBackground(new Background(new BackgroundFill(Color.color(newColor, newColor, newColor), CornerRadii.EMPTY, Insets.EMPTY)));
+
+    private int getRandomPosition(double sizeElement, double maxValue) {
+        Random random = new Random();
+        return random.nextInt( (int)maxValue - (int)sizeElement);
+    }
+
+    private void clearAllPos() {
+        AnchorPaneSet2.setBackground(new Background(new BackgroundFill(Color.color(0, 0, 0), CornerRadii.EMPTY, Insets.EMPTY)));
         buttonKey.setLayoutX(0);
         buttonKey.setLayoutY(0);
+    }
+
+    private Color getRandomColor() {
+        Random random = new Random();
+        double red = (double)random.nextInt(100)/100;
+        double green = (double)random.nextInt(100)/100;
+        double blue = (double)random.nextInt(100)/100;
+        System.out.printf("red = %f, green = %f, blue = %f \n", red, green, blue);
+        return Color.color(red, green, blue);
     }
 
 
